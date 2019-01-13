@@ -31,11 +31,13 @@ This week we learned some types of malwares, which are listed below.
 * Hash (md5 / sha1 / sha256) - a value of a file based on a crypographic algorithm/calculation to obscure the data for anyone except the owner of the hash key.
 
 **Malware Naming Convention**
+
 Each company has different naming convention but that all contain 5 elements: Type, Platform, Family, Variant, and Information.
 
 ex. Trojan:Win32/Reveton.T!lnk -> Type:Platform/Family.Variant!Information
 
 **Advanced Persistent Threats**
+
 Aka APT, decribes three aspects of attacks that represents their profile, intent, and structure;
 * Advanced - fluent with cyber intrusion methods and administrative techniques, and is capable of crafting custom exploits and replated tools
 * Persistent - has a objective, or longer-term campaigns, and works toa chieve their goals without detection
@@ -51,6 +53,7 @@ APT-KILL-CHAIN
 7. Actions on Objectives
 
 **Lab 1 Experience**
+
  In this lab we used various tools to observe the behaviors of a malware. These tools are ProcessExplorer, ProcMon, Fakenet, Flypaper, and Antispy
  
  * ProcessExplorer -  Allows you to see what process is running, what resources its using, and what other process it spawned. Also allows you suspend, or kill, process. Useful to see if its executing command-lines, TCP/IP actions, or where it autostarted.
