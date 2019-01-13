@@ -61,7 +61,7 @@ APT-KILL-CHAIN
  
  Using these tools, to observe a malware in Week1\Class1\Lab2\Replication\Samle1\evil.exe, I was able to describe its behaviors. Upon clicking, it doesn't seem to do anything but it is running stuff in the background. Primarily, it created a list of schedule tasks to execute by running c:\ntldrs\funbots.bat then deletes itself. That schedule tasks is to execute c:\ntldrs\svchests.exe every 30 minutes to download or execute some files, probably tongji2.exe or pao[1].exe
  
- Using FakeNet, the malware wants to connect to s www.hisunpharm.com, static.naver.net, and timeless888.com, which are also found in the string dump of evil.exe
+ Using FakeNet, the malware wants to connect to www.hisunpharm.com, static.naver.net, and timeless888.com, which are also found in the string dump of evil.exe
  
  Knowning this, I think the easiest way to remove this malware is to deleted the c:\ntldrs folder, remove all the auto tasks in Task Scheduler, delete C:\Users\Admin\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.IE5\KLTT2YG3\pao[1].exe and  C:\Program Files\tongji2.exe. Then also revert the hosts file if possible, and change its permission back from 'everyone'.
 
