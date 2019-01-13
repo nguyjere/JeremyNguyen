@@ -59,7 +59,7 @@ APT-KILL-CHAIN
  * Flypaper - Simply blocks traffic to/from TCP/IP and UDP, and also prevents programs for exiting
  * Antispy - Shows when process started, what process are autostarted by schedule tasks, and the network activities.
  
- Using these tools, to observe a malware in Week1\Class1\Lab2|Replication\Samle1\evil.exe, I was able to describe its behaviors. Upon clicking, it doesn't seem to do anything but it is running stuff in the background. Primarily, it created a list of schedule tasks to execute by running c:\ntldrs\funbots.bat then deletes itself. That schedule tasks is to execute c:\ntldrs\svchests.exe every 30 minutes to download or execute some files, probably tongji2.exe or pao[1].exe
+ Using these tools, to observe a malware in Week1\Class1\Lab2\Replication\Samle1\evil.exe, I was able to describe its behaviors. Upon clicking, it doesn't seem to do anything but it is running stuff in the background. Primarily, it created a list of schedule tasks to execute by running c:\ntldrs\funbots.bat then deletes itself. That schedule tasks is to execute c:\ntldrs\svchests.exe every 30 minutes to download or execute some files, probably tongji2.exe or pao[1].exe
  
  Using FakeNet, the malware wants to connect to s www.hisunpharm.com, static.naver.net, and timeless888.com, which are also found in the string dump of evil.exe
  
