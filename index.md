@@ -2,7 +2,7 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
-## Week 2
+# Week 2
 This week is about forensice investigation, which is able extracting data and determining what happened to a system.
 
 *Forensics in a Nutshell:*
@@ -105,7 +105,7 @@ Tool: Photorec -  Used to recovery files that are 'deleted' but the data still r
 5. Go to 'Options' > Select 'Unknown' > Select 'Other'
 6. Select the destination folder to export the carved file to, then press 'c' to carve
 
-## Week 1
+# Week 1
 
 This week is the introduction to the basics of malware. I learned the history of malwares, types of malwares, why they exist, and what their purposes are. Additionally, I got exposed to a couple tools that are used to analyze malwares in a sandboxed environment.
 
