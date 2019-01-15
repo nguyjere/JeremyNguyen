@@ -2,6 +2,109 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+## Week 2
+This week is about forensice investigation, which is able extracting data and determining what happened to a system.
+
+*Forensics in a Nutshell:*
+1. Evidence Acquisition
+2. Investigation and Analysis
+3. Reporting Results
+
+*Four Principles you must always adhere to:*
+1. Minimalize Data Loss
+2. Record Everything
+3. Analyze all data collected (evidence)
+4. Report Findings
+
+**What is evidence?**
+
+Evidence is anything you can use prove, or disprove, a fact in court. Some examples of evidences are...
+* Network (firewalls, IDS, routers...)
+* Operating System
+* Database and applications
+* peripherals
+* removable media (CD/DVD, USB)
+* human testimony
+
+**Triage - Multiple ways of proving a conclusion**
+
+**Evidence Handling**
+
+Preservation of the integrity of the evidence at all times by...
+* Creating a cryptographic hash of the entire disl
+* Create bit-images copies and analyze them
+* Create a cryptographic hash of the copy and ensure it matches the original
+* Lock the original disk in a limited-access room/container
+
+**Investigation Cycle**
+
+* Verification
+* System Description
+* Evidence Acquistion
+* Loop:
+  * Timeline Analysis
+  * Media Analysis
+  * String or byte Search
+  * Data Recovery
+  * Report Analysis
+
+**Locard's Exchange Principle**
+
+When two objects come in contact with each other, there is always a transference of material between the objects.
+Once contaminated, stay contaminated!
+
+**Order of Volatility**
+
+When collecting evidence, you should always start from the volatile to the less volatile (refer to RFC 3227)
+Example:
+1. System Memory
+2. Temporary File Sytems (swap file / paging file)
+3. Process Tables & Network Connections
+4. Network Routing Information & ARP Cache
+5. Forensice Acquisition of Disks
+6. Remote Logging & Monitoring Data
+7. Physical Configuration & Network Topology
+8. Backups
+
+**FTK Imager Lab**
+
+This tool is used to capture a memory dump. This tool should always be run from a CD-ROM, or USB stick, and never save the memory dump to the suspect's machine. Save with serial number, and data. You can use a commercial tool called FastDump with has CLI.
+
+Also, this tool can copy the image of the disk which you can mount into a VM. In 'select image type' use 'RAW'. This tool can also copy protected file.
+
+**Volatility**
+
+A forensic tools for Windows and OSX that allows the users to analyze informations inside the memory dump such as hidden processes, orphanes threads, and hidden and injected code.
+
+To use: $ volatility.exe -f <memory name> [--profile=<profile name>] <plugin>
+ 
+ imageinfo : Displays the suggested profile of the memory dump, date you took the memory dump, and more.
+ psscan : Displays the list of processes that was running on the system.
+ dlllist -p <pid> : Displays the list of dlls used by a process id
+ netscan : Displays a list of network connections made by which processes.
+ Deskscan : Displays the list of processes that was running on the desktop
+ Getsids : 
+
+**Timeline Creation and Analysis**
+MAC Time : Modified, Access, Creation time
+$MFT (master file table) : database in which information about every file and directory on an NT File System (NTFS) volume is stored.
+Tools: Volatility, Reg-Ripper
+
+ 1. $ volatility.exe -f <memory name> imageinfo //to get the profile name
+ 2. $ volatility.exe -f --profile=<profile> timerliner --output=body >> timeliner.txt
+ 3. $ volatility.exe -f --profile=<profile> mftparser --output=body >> mftparser.txt
+
+**Data Recovery**
+
+Tool: Photorec -  Used to recovery files that are 'deleted' but the data still remains in the disk
+
+1. Install OSFMount
+2. Unzip carving_lab.zip to obtain 11-carve-fat.dd
+3. OSFMount: Mount 11-carve-fat.dd to a drive such as E:/
+4. Launch photorec_win.exe and select drive E:
+5. Go to 'Options' > Select 'Unknown' > Select 'Other'
+6. Select the destination folder to export the carved file to, then press 'c' to carve
+
 ## Week 1
 
 This week is the introduction to the basics of malware. I learned the history of malwares, types of malwares, why they exist, and what their purposes are. Additionally, I got exposed to a couple tools that are used to analyze malwares in a sandboxed environment.
@@ -67,5 +170,4 @@ APT-KILL-CHAIN
  Using FakeNet, the malware wants to connect to www.hisunpharm.com, static.naver.net, and timeless888.com, which are also found in the string dump of evil.exe
  
  Knowning this, I think the easiest way to remove this malware is to deleted the c:\ntldrs folder, remove all the auto tasks in Task Scheduler, delete C:\Users\Admin\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.IE5\KLTT2YG3\pao[1].exe and  C:\Program Files\tongji2.exe. Then also revert the hosts file if possible, and change its permission back from 'everyone'.
-
 
