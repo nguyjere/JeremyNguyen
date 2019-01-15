@@ -3,7 +3,7 @@
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
 # Week 2
-This week is about forensice investigation, which is able extracting data and determining what happened to a system.
+This week is about forensics investigation, which is about extracting data and determining what happened to a system. We learned a couple tools to help extract and analyze data while preserving the integrity of the evidence. Some tools introduced in this lectures are: FTK Imager, Volatility, Yara, and Photorec.
 
 *Forensics in a Nutshell:*
 1. Evidence Acquisition
@@ -85,7 +85,8 @@ To use: $ volatility.exe -f <memory name> [--profile=<profile name>] <plugin>
  Deskscan : Displays the list of processes that was running on the desktop
  Getsids : 
 
-**Timeline Creation and Analysis**
+**Timeline Creation and Analysis via Volatility**
+
 MAC Time : Modified, Access, Creation time
 $MFT (master file table) : database in which information about every file and directory on an NT File System (NTFS) volume is stored.
 Tools: Volatility, Reg-Ripper
@@ -94,9 +95,9 @@ Tools: Volatility, Reg-Ripper
  2. $ volatility.exe -f --profile=<profile> timerliner --output=body >> timeliner.txt
  3. $ volatility.exe -f --profile=<profile> mftparser --output=body >> mftparser.txt
 
-**Data Recovery**
+**Data Recovery by Photorec**
 
-Tool: Photorec -  Used to recovery files that are 'deleted' but the data still remains in the disk
+Photorec is used to recovery files that are 'deleted' but the data still remains in the disk.
 
 1. Install OSFMount
 2. Unzip carving_lab.zip to obtain 11-carve-fat.dd
