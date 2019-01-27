@@ -2,7 +2,23 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 3
+
+This week we learned about the basics of malware defense, their attack vectors, and how to defend against them.
+
+I thought this flowchart was prettying interesting. It shoulds the malware lifecycle in 4 stages: First Contact, Execution, Establish Presence, and Malicious Activity. First contact is how the malware is administered to the victim, either by email, USB, or by some exploit. Then execution refers to tricking, or exploiting a browser vulnerabilities, to run a script. Establish presences is how malware keeps itself alive after a simple reboot, or protected itself from anti-viruses. Then finally, the malicious activities refers to the end game of the malware such as fraud, extortion, or destruction.
+
+![Malware Attack Vector Flowchart](https://i.imgur.com/yJdK0nY.png)
+
+The diagram below shows the layer of defense against malware. The first and second layer starts with the network firewall to prevent unwanted (or known to be bad) hosts from sending or receiving messages from the internal network by blocking their IP's. The next layers are hosts firewalls where the hosts can block IPs that are known to be bad, or just undesirable. And then theres access control with are user authentication and privileges to the endpoint. The last piece is anti-malware which is used to actively block, look-for, and remove malware.
+
+![Malware Defense Later](https://i.imgur.com/V4XEaLR.png)
+
+## Yara
+
+
 # Week 2
+
 This week is about forensics investigation, which is about extracting data and determining what happened to a system. We learned a couple tools to help extract and analyze data while preserving the integrity of the evidence. Some tools introduced in this lectures are: FTK Imager, Volatility, Yara, and Photorec.
 
 *Forensics in a Nutshell:*
