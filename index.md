@@ -14,8 +14,71 @@ The diagram below shows the layer of defense against malware. The first and seco
 
 ![Malware Defense Later](https://i.imgur.com/V4XEaLR.png)
 
-## Yara
+**Yara**
 
+Yara Editor: code.google.com/p/yara-editor
+
+Yara is a tool used to scan files that contains a set of rules(or strings) defined by the user. The idea is to write a rule that searches for unique strings found in malware. Good rules consist of unique and short rules.
+
+Below is an example for of a yara rule.
+
+```yara
+rule Badboy
+{
+ strings:
+    $a = "win.exe"
+    $b = http://foo.com/badfile1.exe
+    $c = http://bar.com/badfile2.exe
+    
+ condition:
+     $a and ($b or $c)
+}
+```
+
+In the first lab, I wrote the yara rule below that captures all of the file in C:\Users\Admin\Desktop\malware\MalwareDefense\Class1\ Sample Group 1\. However, scanning System32 will also show one false positive which is file "mfc71.dll".
+
+```yara
+rule Lab1
+{
+ strings:
+    $a = "KERNEL32.DLL"
+    $b = "advapi32.dll"
+    $c = "oleaut32.dll"
+    $d = "user32.dll"
+    
+ condition:
+     all of them
+}
+```
+
+The yara rule is run by terminal...
+```
+C:\Users\Admin\Desktop\Tools\MalwareDefense\yara-2.1.0-win32\yara32.exe -p 10 -a 5 <yara path> c:\Windows\System32
+```
+
+For the second lab, the yara rule below will successfully capture all of the file under C:\Users\Admin\Desktop\malware\MalwareDefense\Class1\ Sample Group 2\ and will not capture anything under System32.
+
+```yara
+rule Lab1
+{
+ strings:
+    $a = "DownloaderActiveX" nocase
+    
+ condition:
+     all of them
+}
+```
+
+Conclusion: Yara is about finding signatures, or strings, that is common to the set of bad files, but unique only to those set of files. As for creating the rule, we have to determine why the strings, or commonalities, exist and what their purpose is for.
+
+**Cuckoo**
+
+Cuckoo is the tool used to run a malware on the VM and logs all activies in a csv file located in C:\cuckoo\logs
+To Run:
+1. Copy the malware file to the desktop and rename it to "bad"
+2. Run cuckoo by "$ cd C:\analyzer" then "$ analyzer.py"
+3. Close the crash window then run FakeNet.exe
+4. View the csv file in the logs to read its behavior (which is the same as Week 1)
 
 # Week 2
 
