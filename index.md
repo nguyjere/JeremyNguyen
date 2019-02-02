@@ -2,6 +2,42 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 4
+
+This week is about discovering exploitations and what it can be used for. The primary tool used for this week is WinDbg.
+
+**WinDbg**
+
+WinDbg is used to disassemble the process to Assembly language. After starting up the process, attach a process so the debugger can connect to it, then you can input command line to do things.
+
+![WinDbg](https://i.imgur.com/X9Z1tUz.png)
+
+In the image above, the left window shows the disassembly code of the chosen process. The right window shows the list of modules and .dll imported by the process.
+
+WinDbg Commands
+```
+Click View->Disassembly // Displays disassembly view of the process
+r     // Displays the registers and its values
+dd, da, du <memory address> // Used to view whats inside memory, ex. du poi(esp)
+bp <address> // Adds a breakpoint at the address
+bc * // Clears all breakpoints
+t, p // Steps through the process. t stops into, p steps over
+!teb // Displays the process info including the heap
+!peb // Displays the thread info including the stack
+!address // Displays the list address used by the process
+.formats // Converts value to other forms
+?1+1 // Simply does the math
+lm // Display list of modules imported by process
+k // View call stack and disassembly view
+u eip L10 // Lists 10 first ten lines of disassembled instructions
+
+
+!load byakugan
+!pattern_offset 2000
+s [start] [end] ff e4 // Searches from [start] address to [end] address 
+                      // and returns the address that contains "ff e4", or "jmp esp"
+```
+
 # Week 3
 
 This week we learned about the basics of malware defense, their attack vectors, and how to defend against them.
