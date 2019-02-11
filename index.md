@@ -19,10 +19,6 @@ LiveKD - An application that sits ontop of WinDbg and kd but provides live updat
 4. Rewrite the new address with the original address noted from Tuluka
 Or just run the fix on Tuluka to patch the memory for you.
 
-**Bootkits**
-
-Bootkits are another way for malware to install rookit.
-
 # Week 4
 
 This week is about discovering exploitations and what it can be used for. The primary tool used for this week is WinDbg.
