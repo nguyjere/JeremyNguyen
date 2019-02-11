@@ -2,6 +2,27 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 5
+
+This week is about using various tools that we have learned, and new tools, to debug Windows kernel. The idea of debugging Windows kernal is observing if the Windows API has been hijacked in memory by malware rookits. Malware rootkits can be used to hide files from Windows Explorer by hijacking the Windows API that enumerates the files for users to view, filtering out the malicious files that it wants to hide, and returns the rest of the files back to the Application. The rootkit will changes the first jmp instruction in memory of a function it wants to hijack to a custom function written by the hacker. When that hijacked function runs, it will jump to the custom function, executes that set of instructions, then returns back to the original hijacked function. Performing kernel debugger allows us to observe what instructions are being ran.
+
+The tools we covered this week are WinDbg, Tuluka, LiveKD, and Process Hacker.
+
+WinDbg - Can be used to add breakpoints and step through a thread using Kernel Debugger tool in WinDbg.
+Tuluka - An AntiRootKit that identifies any hooks by any programs and drivers, and displays the original and patched memory addresses of the instructions.
+LiveKD - An application that sits ontop of WinDbg and kd but provides live updates. Can create memory dumps for analysis
+
+**Steps to patch a hooked API**
+1. Use Tuluka to determine which API is hooked, note the API, original address, and the new address
+2. Use LiveKD type "dps" and search for the API that looks out of bound and note the offset address
+3. Go to Memory View and type in the address/offset
+4. Rewrite the new address with the original address noted from Tuluka
+Or just run the fix on Tuluka to patch the memory for you.
+
+**Bootkits**
+
+Bootkits are another way for malware to install rookit.
+
 # Week 4
 
 This week is about discovering exploitations and what it can be used for. The primary tool used for this week is WinDbg.
