@@ -6,7 +6,13 @@ Each week I will submit a post about my reflections on what I learned from the w
 
 Week 6 is about network security. In this lecture we learned about the multiple layers that makes up the defense against intrusions outside the network. The picture below shows a good diagram of the network zones.
 
+![Network Zones](https://i.imgur.com/FakuYtA.png)
 
+One important definitely is white-list policy, which is a set of policy that is permitted on the network. It is easier to define a finite set of policies then to define a set of black-list policy that can be infinite.
+
+Firewalls are significant devices used in network security. Firewall are devices that sit between zones and filter traffic based on the set policy. It basically inspect packets and filters them if they violate the policy.
+
+Man in the middle (MITM) is when someone intercepts messages between hosts. MITM attack can occur by ARP poisoning which sends the network the hackers MAC address to an incorrect IP address, allowing messages to be sent to the hacker. Some MITM can be used for good such as mail proxy and SSL to prevent EXE files and sensitive datas from being transferred through mail. You can prevent MITM by encrypting data and messages before sending them out. Generally, you would encrypt the message with the receivers' public key then upon receival, the receiver can decrypt the message with their private key.
 
 **Lab 2**
 
