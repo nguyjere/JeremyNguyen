@@ -2,6 +2,16 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 6
+
+Week 6 is about network security. In this lecture we learned about the multiple layers that makes up the defense against intrusions outside the network. The picture below shows a good diagram of the network zones.
+
+
+
+**Lab 2**
+
+This week, we were assigned to complete Lab 2. Lab 2 consist of writing/modifying a python script to output informations about network activities logged in a .csv file. From this lab I learned how to determine what IP address are used for what services such as Email, DNS, Printer, Web Servers, etc. Also, I learned how to crunch the datas together to see which IP had the most activities, and what purpose the network is used for such as work, data center, or home. I learned how to reference a file in Linux for port and protocol numbers. Those files are /etc/services and /etc/protocols, respectively.
+
 # Week 5
 
 This week is about using various tools that we have learned, and new tools, to debug Windows kernel. The idea of debugging Windows kernal is observing if the Windows API has been hijacked in memory by malware rookits. Malware rootkits can be used to hide files from Windows Explorer by hijacking the Windows API that enumerates the files for users to view, filtering out the malicious files that it wants to hide, and returns the rest of the files back to the Application. The rootkit will changes the first jmp instruction in memory of a function it wants to hijack to a custom function written by the hacker. When that hijacked function runs, it will jump to the custom function, executes that set of instructions, then returns back to the original hijacked function. Performing kernel debugger allows us to observe what instructions are being ran.
