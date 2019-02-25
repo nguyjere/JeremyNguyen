@@ -2,6 +2,40 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 7
+
+This week, we learn about web security and how hackers perform malicious actions through the web. Users can be attacked by several was: Phising, SEO Poisoning, Fake Anti-virus, Social Media Link Insertion, Forum Link Insertion, and Malvertising.
+
+**Phishing**
+
+Phising is when attackers sends a fake website that mirrors a legitimate website, tricking the user into entering their credentials or information into the fake website. The data will be send to the hacker to be used access banking/financial, email, or any other accounts. Phishing can be spotting by examining the URL and see if the URL does not match the URL of the legitimate website it is mocking. For example: www.wellsfargo.com vs www.we1lsfargo.com
+
+**SEO Poisoning**
+
+SEO Poisoning is short for Search Engine Optimization Poisioning, and it is a method for attackers to abuse the search engine's relevance agorithm. The attacker uses tools to determine the trending search, then create a website that contains the relevant contents of the trending topic to lure users into the websites that redirects them to a malicious content.
+
+**Fake Anti-virus**
+
+Fake AV is a website/pop-up that mimics an anti-virus alarming the users they may have malware installed, tricking the user to click a button (in a sense of urgency) that will lead them to either download a malware, or lead them to a payment site.
+
+**Social Media Link Insertion**
+
+Social Media Link Insertion is simply posting a URL to a malicious content on social media, tricking the users into clicking the link out of urgency, curiosity, or interest. Sometimes attackers can create a fake social media profile and build up fake information to make the profile appear legitimate. After gaining the users' trust, they post links to malicious contents where users' will submit or send their sensitive data.
+
+**Malvertising**
+
+Malvertising is using the advertising networks as a delivery mechanism for malware. There are 3 stages. The first stage is creating legitimate ads to gain some reputation and trust of the ad servers. The second stage is to offer malicious ads to distribute to as many website. The third stage is to deliver dynamic payloads to avoud AV detections to keep the malicious ad on the server as long as possible.
+
+**Waterhole Attacks**
+
+Waterhole attacks are targeted to app developers by hacking the resources known to be used by a community of developers. The attackers would inject an exploit into the selected sites visited by developers and the exploit would drop the malware into their vulnerable system. With the malware, the attack can perform their malicious activities against the developers.
+
+**Defense**
+
+There are many ways to defense against attackers from the web. The first way is using protections in browsers or network device to classify url and domain by reputations and filtering out domains with bad reputations. Also using extensions for search result link annotation would help user identify risking and safe websites. Using client and gateway anti-virus and anti-malware also adds another layer of protection against attackers by blocking malicious contents on the network level.
+
+In the end, the best defense is educating the users. Training them to identify phishing, and being more cautious of submitting their data will prevent attacks from being successful.
+
 # Week 6
 
 Week 6 is about network security. In this lecture we learned about the multiple layers that makes up the defense against intrusions outside the network. The picture below shows a good diagram of the network zones.
