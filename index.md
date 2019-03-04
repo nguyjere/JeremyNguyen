@@ -2,6 +2,36 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 8
+
+This week, we learned about one of the most common attack vectors in cyber security, emails. We learned how to identify phishing, and defense mechanism against phishing. Phishing is the act of sending emails to trick victims into clicking a malicious link, or entering sensitive informations into a link. Typically, these links are created to mock a legitimate email, or to convey a sense of urgency, or a call to action.
+
+**Combating Spam Emails**
+
+One of the methods to filter spam is using a reputation system for IP, messages, and URL. With IP, the email servers can filter IPs that are known to be spams (when many users mark the email as spam). Or measure the amount of email sent by one IP, a spike in email means its probably a spam. However, some attackers can use snowshoe attack to avoid being detected. Snowshoe attack is sending the same email but with different IP's. Attackers would alternate sending with a set of IP.
+
+Another method to identify spam emails is by parsing the email contents using Regular Expression or by searching for common strings. If Regex captures a string in the email content that matches the rules of a spam email, then it will classify the email as spam. Regex can be used to search for sender's address, URLs, or strings such as "Wire $1000 by Tuesday to claim your reward".
+
+Some useful Regex tools are Regex Coach or what I personally use, https://regexr.com/.
+
+Spamhaus.org is a widely accepted authoritative source of reputation data in North America.
+
+**CTE**
+
+As a reference, here's an example of a rule used in a classification tree editor to classify emails.
+```
+Rules WITH rules as (
+      SELECT heur_symbols as rule_id
+      FROM message_data
+      WHERE heur_symbols is not null
+      limit 100000)
+SELECT regexp_split_to_table(rules.rule_id, ','), count(*)
+FROM rules
+GROUP BY 1
+ORDER BY 2 
+DESCLIMIT 100
+```
+
 # Week 7
 
 This week, we learn about web security and how hackers perform malicious actions through the web. Users can be attacked by several was: Phising, SEO Poisoning, Fake Anti-virus, Social Media Link Insertion, Forum Link Insertion, and Malvertising.
