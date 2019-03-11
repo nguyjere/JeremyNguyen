@@ -2,6 +2,68 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Week 9-10
+
+This week we learned about mobile platform and security, specifically they kind of malware that exist for mobile platforms.The three main mobile operating system (when the lecture was given) was Android, iOS, and Windows. Although, there was other players such as Firefox OS, Tizen, and Ubunto Touch.
+
+**Android**
+
+Android was created by a startup and was obtained by Google in 2007. The official primary langauge of Android is Java, and the app file format is .apl. When the app compiles, the executable file format is ELF (used to be .dex). The cost of registering you application to Google Play is $25, and the approval process is automated.
+
+**iOS**
+
+Apple has their own operating system for their iPhones, the iOS. The official language of iOS is Objective-C/C/C++, but I think now they include Swift. Their app file format is .ipa, but compiled into .app. They cost of registering your application cost $99/year for a developer license, and the application approval process is done manually.
+
+**Windows**
+
+Microsoft developed their operating system for Windows Phone, called Windows. It's official language is C# .NET or HTML5/JS. It's compressed application file format is .xap in Windows NT 7, or .appx in Windows NT 8. When compiled their application format is .dll.
+
+**Sandboxing**
+
+Generally, each application is sandboxed in their own environment to keep them isolated and prevent them from communication/interfering with other applications. Some except exist where two application will share the same environment if they are signed using the same digital signature. Below is the diagram by the presenter.
+
+![Mobile App Sandbox](https://i.imgur.com/oNsP9QL.png)
+
+**Jailbreaking and Rooting**
+
+Jailbreaking is the act of cracking the iOS to allow users to perform root-like functions such as ssh, running un-authorized software, and unlocking carrier-locked iPhones. I used to do this in high school.
+
+Rooting an Android is gaining root access to the operating system to gain more control and execute privileged operations. This allows user to remove bloatwares, or pre-installed applications, bypass restricitions from manufacturers/carriers, and download software with special features requiring root access.
+
+**Symbian Worm Yxes**
+
+Yxes was the first mobile botnet detected in 2009, and it was created to target Symbian OS 9 and above. It was spread through URL sent as SMS. This malware hide its footprint by disabling UI dialogs by executing silent outgoing Internet communications such as HTTP communications. It used HTTP communications to sent malware version, phone model, communicate with another Symbian package siliently installed, and exported contacts, files, and device informations to a remove server. It was able to kill system apps to avoid detection and encrypt URLs.
+
+**IKEE**
+
+IKEE was the first iOS malware found in November 2009. It affected jailbroken iPhones and prompts user to play $5 to remove the malware. This malware used the default SSH password "alpine" to infect users.
+
+**FakePlayer & TapSnake**
+FakePlayer and TapSnake were the first malware for Android found in August 2010. FakePlayer sends SMS messages to premium-rate numbers and executes payloads in the background without users consent. This application disguise itself as a media player application, and it was not in the Android Market. It typically affected Russian victims.
+
+Tapsnak was similar, but it was found in the Android Market. It tracks and send GPS coordinates to a remote server, and runs in the background after boot.
+
+**Geinimi**
+
+Geinimi was the first Android Botnet found in December 2010. It was distributed in a third-party market in China as Google Play was banned in China. It leaked sensitive informations (GPS, IMEI, and installed apps) to a remove server, and downloaded additional APKs. It prompted users to uninstall an application and can execute commands sent by a remote C&C server.
+
+**PJAPPS**
+
+PJAPPS was another malware in 2011 that targeted Chinese users. This one was similar to Geinimi, but it also intercept incoming SMS.
+
+**Google's reaction to Malware**
+
+Google reacted to Android Security threats by removing malicious applications from the store, and banned malicious developers. Google was able to remotely remove malicious applications from users' phone, and download/install "Android Market Security Tool" in March 2011 to patch exploits.
+
+Some malware authors took advantages of the fix by repackaging the Android Market Security Tool with malicious code, which sens SMS messages instructed by a C&C server. It also intercepted incoming SMS messeages and maining targeted Chinese telecom carriers.
+
+**How Java is compiled in Android**
+
+Applications written in Java is compiled into .dex file that contains all the class definitions, constants, and data defined in the Java source code. Nowadays, dex files are compressed into APK with resources and native codes. Upon installation, it gets decompressed, and dex file is converted to ELF file, that is executed in its own virtual environment within Android.
+
+Within the APK package, you can view the .xml file (after uncompressed it) to view the permission the application specifies such as
+"android.permission.WAKE_LOCK", or "android.permission.RECEIVE_BOOT_COMPLETED".
+
 # Week 8
 
 This week, we learned about one of the most common attack vectors in cyber security, emails. We learned how to identify phishing, and defense mechanism against phishing. Phishing is the act of sending emails to trick victims into clicking a malicious link, or entering sensitive informations into a link. Typically, these links are created to mock a legitimate email, or to convey a sense of urgency, or a call to action.
