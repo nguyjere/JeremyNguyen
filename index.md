@@ -40,7 +40,7 @@ def print_array(x):
     print answer
 ```
 
-So, printing out the variable “chars” gives a string “udvvrjwa$$~rs}*s}*k*~|yvv”. I entered in the flag HTB{anaconda: udvvrjwa$$~rs}*s}*k*~|yvv} but it failed. After some struggle and printing variables out, I get the message (below) after printing variables chains, keys, password, auth, and char, in that order.
+So, printing out the variable “chars” gives a string ```udvvrjwa$$~rs}*s}*k*~|yvv```. I entered in the flag HTB{anaconda: udvvrjwa$$~rs}*s}*k*~|yvv} but it failed. After some struggle and printing variables out, I get the message (below) after printing variables chains, keys, password, auth, and char, in that order.
 
 ```
 this is a troll
