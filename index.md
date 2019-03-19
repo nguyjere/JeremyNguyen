@@ -2,6 +2,106 @@
 
 Each week I will submit a post about my reflections on what I learned from the weekly lectures or labs of CS373. This includes ideas, concepts, tools, or whatever conclusions I came to.
 
+# Final
+
+**Signing Up**
+
+To sign up an account to hackthebox.eu, I went through the normal workflow until it prompted me for an invitation code at https://www.hackthebox.eu/invite. At that page, I used Chrome’s DevTools to inspect the page and network and saw a script source “inviteapi.min.js” in preview that made no sense, but I did see a line:
+
+```javascript
+'response|function|log|console|code|dataType|json|POST|formData|ajax|type|url|success|api|invite|error|data|var|verifyInviteCode|makeInviteCode|how|to|generate|verify'.split('|')
+```
+It wasn’t very clear but the text that stood out is “makeInviteCode”. Within the line, I so some clue such as “console”, “log”, and “function”. I tried “makeInviteCode()” because typing in “makeInviteCode” autocompletes to “makeInviteCode()”. I received a 200 response status with a data response of:
+
+```json
+data: "Va beqre gb trarengr gur vaivgr pbqr, znxr n CBFG erdhrfg gb /ncv/vaivgr/trarengr"
+enctype: "ROT13"
+```
+So, it look like the data is encrypted with ROT13. I used https://cryptii.com/pipes/rot13-decoder to decipher the data by pasting in the data, and received “In order to generate the invite code, make a POST request to /api/invite/generate”. So to make a post request to that path, I used https://apitester.com/ and entered a post request to https://www.hackthebox.eu/api/invite/generate and received:
+
+```json
+{"success":1,
+"data":{"code":"WkhLSEUtUEtWQ0ktQk1aTUstUUhSWlMtRVNUT0U=","format":"encoded"},
+"0":200}
+```
+Unforunately, this tells me that the code is encoded, but I don’t know the encoding type. I used https://www.base64decode.org/ and tried out the first encoding type, UTF-8, and the invite code worked! The invitation code is *ZHKHE-PKVCI-BMZMK-QHRZS-ESTOE*.
+
+**Challenge #1: Snake [10 Points]**
+
+This challenge is under “Reversing” and I had to figure out the flag username and password from a Python script. Using Python IDLE, I was able to modify the script to print out the variable of the username it was looking for, which was “anaconda”. That was easy. 
+
+I did the same for the password variable “chars”, but that is just a list of integers. I wrote custom method to convert the list of integers to ASCII and print it out; it is shown below
+
+```python
+def print_array(x):
+    answer = ''
+    for i in x:
+        answer += str(chr(i))
+    print answer
+```
+
+So, printing out the variable “chars” gives a string “udvvrjwa$$~rs}*s}*k*~|yvv”. I entered in the flag HTB{anaconda: udvvrjwa$$~rs}*s}*k*~|yvv} but it failed. After some struggle and printing variables out, I get the message (below) after printing variables chains, keys, password, auth, and char, in that order.
+
+```
+this is a troll
+password!!
+its not that easy
+keep trying
+udvvrjwa$$~rs}*s}*k*~|yvv
+```
+
+After some struggles, I looked online for some tip and tried different username and password. Well, the answer isn’t in cryptography, but a ridiculous puzzle made by the developer. After some few hours, I tried deleting anything that had to do with the word “chain” in the source code and the variable chars printed out “udvvrjwa$$”. Below is the for-loop that I deleted:
+
+```python
+for chain in chains:
+    chains_encrypt = chain + 0xA
+    chars.append(chains_encrypt) 
+```
+
+As if it was metaphorically designed for user to free the snake by removing the “chain”. Anyways, I entered the flag *HTB{anacode: udvvrjwa$$}* and it passed.
+
+**Challenge #2: Weak RSA [20 Points]**
+
+This challenge is about deciphering a file “flag.enc” using a public RSA key “key.pub”. This first this I did was to Google “private key from public key RSA tool” and found a tool on GitHub as the third link. I download the Python scripts from https://github.com/Ganapati/RsaCtfTool and gave it a shot. I had to install some dependencies  using brew install and pip install per the README instruction. After the tool installed and compiled, I ran the command below to get the private key:
+
+```
+$ python3 RsaCtfTool.py –publickey key.pub –private >> private_key.txt
+```
+
+I got the private key, which I can use to decipher the text, but there was another convenient command to do that for me.
+
+```
+$ python3 RsaCtfTool.py –publickey key.pub –uncipherfile flag.enc >> deciphered.txt
+```
+
+The result of this command is:
+
+```
+[+] Clear text : b'\x00\x02!\xcf\xb2\x98\x83\xb0o@\x9ag\x9aX\xa4\xe9{Dn(\xb2D\xbb\xcd\x06\x87\xd1x\xa8\xab\x87"\xbf\x86\xda\x06\xa6.\x04,\x89-)!\xb36W\x1e\x9f\xf7\xac\x9d\x89\xba\x90Q+\xacL\xfb\x8d~J9\x01\xbb\xcc\xf5\xdf\xac\x01\xb2{\xdd\xd3_\x1c\xa5SD\xa7YC\xdf\x9a\x18\xea\xdb4L\xf7\xcfU\xfa\x0b\xaap\x05\xbf\xe3/A\x00HTB{s1mpl3_Wi3n3rs_4tt4ck}' 
+```
+
+We don’t care what this means, all we care is the flag portion: *HTB{s1mpl3_Wi3n3rs_4tt4ck}*. I entered that flag into HackTheBox and it passed,
+
+**Challenge #3: Sick Teacher [20 Points]**
+
+This challenge is about deciphering a text file shown below.
+
+>>KBJICYP CZ KHLTIKWECD
+
+>>KHLTIKWECD RWMI GBQW JCNW IBNW BM NHP CZ 2017. JBMLW IKWM, BI KHJ FYCRM QWYP VOBLTGP IC IKCOJHMSJ CZ NWNEWYJ ZYCN HGG CQWY IKW FGCEW.
+>>IKW KHGG CZ ZHNW GBJIJ IKW ICA 100 OJWYJ BM CYSWY CZ ACBMIJ. HI IKW IBNW CZ RYBIBMF, IKW ICA 3 OJWYJ HYW JIWZHMC118, ZBGGBACJ HMS HKNWS.
+>>IKWYW HYW JCNW ZCYONJ, H JKCOIECD HMS H JGHLT LKHMMWG. JGHLT HMS JKCOIECD HYW HRWJCNW, EOI IKW ZCYONJ MWWS JCNW GCQW! B RBJK NCYW AWCAGW OJWS IKWN.
+>>KCAWZOGGP IKBJ BJ WMCOFK IWDI IC KWGA RBIK PCOY JOEJIBIOIBCM! FWI LYHLTBM! AJ SCM'I ZCYFWI IC JOAACYI KHLTIKWECD BZ PCO LHM JAHYW JCNW >>NCMWP. WQWYP AWMMP KWGAJ!
+
+>>DCDC – HYYWDWG
+
+After Googling “decrypting text”, I found this tool: http://www.richkni.co.uk/php/crypta/index.php. I solved this challenge using the “Letter Replacement” and “Frequency analysis” tool. Here I pasted the text content and specified which letters to replace with. Using the “Frequency Analysis” tool, I shows that the three letter work “ikw” occurred the most at 12 times. I figured this sequence corresponds to “the”, so I replace “i” with “t”, “k” with “h”, and “w” with “e”. I noticed that “h” and “b” are the only single letter word, so they must be “i” or “a”. I figured “h” was “a” and “b” was “I”. This is like playing Wheel of Fortune. As I began to uncover the next word, I recognized words and eventually decipher the text to 
+
+>>HISTORY OF HACKTHEBOX HACKTHEBOX WENT LIVE SOME TIME IN MAY OF 2017. SINCE THEN, IT HAS GROWN VERY QUICKLY TO THOUSANDS OF MEMBERS FROM ALL OVER THE GLOBE. THE HALL OF FAME LISTS THE TOP 100 USERS IN ORDER OF POINTS. AT THE TIME OF WRITING, THE TOP 3 USERS ARE STEFANO118, FILLIPOS AND AHMED. THERE ARE SOME FORUMS, A SHOUTBOX AND A SLACK CHANNEL. SLACK AND SHOUTBOX ARE AWESOME, BUT THE FORUMS NEED SOME LOVE! I WISH MORE PEOPLE USED THEM. HOPEFULLY THIS IS ENOUGH TEXT TO HELP WITH YOUR SUBSTITUTION! GET CRACKIN! PS DON'T FORGET TO SUPPORT HACKTHEBOX IF YOU CAN SPARE SOME MONEY. EVERY PENNY HELPS! XOXO - ARREXEL FLAG LOREMIPSUMDOLORSITAMET
+
+So, we now know the flag is LOREMIPSUMDOLORSITAMET, but the developer wants the flag lowercased. I entered *HTB{loremipsumdolorsitamet}* and it passed.
+
+
 # Week 9-10
 
 This week we learned about mobile platform and security, specifically they kind of malware that exist for mobile platforms.The three main mobile operating system (when the lecture was given) was Android, iOS, and Windows. Although, there was other players such as Firefox OS, Tizen, and Ubunto Touch.
