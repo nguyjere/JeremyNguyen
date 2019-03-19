@@ -24,7 +24,7 @@ So, it look like the data is encrypted with ROT13. I used https://cryptii.com/pi
 "data":{"code":"WkhLSEUtUEtWQ0ktQk1aTUstUUhSWlMtRVNUT0U=","format":"encoded"},
 "0":200}
 ```
-Unforunately, this tells me that the code is encoded, but I don’t know the encoding type. I used https://www.base64decode.org/ and tried out the first encoding type, UTF-8, and the invite code worked! The invitation code is *ZHKHE-PKVCI-BMZMK-QHRZS-ESTOE*.
+Unforunately, this tells me that the code is encoded, but I don’t know the encoding type. I used https://www.base64decode.org/ and tried out the first encoding type, UTF-8, and the invite code worked! The invitation code is ```ZHKHE-PKVCI-BMZMK-QHRZS-ESTOE```.
 
 **Challenge #1: Snake [10 Points]**
 
@@ -40,7 +40,7 @@ def print_array(x):
     print answer
 ```
 
-So, printing out the variable “chars” gives a string ```udvvrjwa$$~rs}*s}*k*~|yvv```. I entered in the flag HTB{anaconda: udvvrjwa$$~rs}*s}*k*~|yvv} but it failed. After some struggle and printing variables out, I get the message (below) after printing variables chains, keys, password, auth, and char, in that order.
+So, printing out the variable “chars” gives a string ```udvvrjwa$$~rs}*s}*k*~|yvv```. I entered in the flag ```HTB{anaconda: udvvrjwa$$~rs}*s}*k*~|yvv}``` but it failed. After some struggle and printing variables out, I get the message (below) after printing variables chains, keys, password, auth, and char, in that order.
 
 ```
 this is a troll
@@ -58,7 +58,7 @@ for chain in chains:
     chars.append(chains_encrypt) 
 ```
 
-As if it was metaphorically designed for user to free the snake by removing the “chain”. Anyways, I entered the flag *HTB{anacode: udvvrjwa$$}* and it passed.
+As if it was metaphorically designed for user to free the snake by removing the “chain”. Anyways, I entered the flag ```HTB{anacode: udvvrjwa$$}``` and it passed.
 
 **Challenge #2: Weak RSA [20 Points]**
 
@@ -80,7 +80,7 @@ The result of this command is:
 [+] Clear text : b'\x00\x02!\xcf\xb2\x98\x83\xb0o@\x9ag\x9aX\xa4\xe9{Dn(\xb2D\xbb\xcd\x06\x87\xd1x\xa8\xab\x87"\xbf\x86\xda\x06\xa6.\x04,\x89-)!\xb36W\x1e\x9f\xf7\xac\x9d\x89\xba\x90Q+\xacL\xfb\x8d~J9\x01\xbb\xcc\xf5\xdf\xac\x01\xb2{\xdd\xd3_\x1c\xa5SD\xa7YC\xdf\x9a\x18\xea\xdb4L\xf7\xcfU\xfa\x0b\xaap\x05\xbf\xe3/A\x00HTB{s1mpl3_Wi3n3rs_4tt4ck}' 
 ```
 
-We don’t care what this means, all we care is the flag portion: *HTB{s1mpl3_Wi3n3rs_4tt4ck}*. I entered that flag into HackTheBox and it passed,
+We don’t care what this means, all we care is the flag portion: ```HTB{s1mpl3_Wi3n3rs_4tt4ck}```. I entered that flag into HackTheBox and it passed,
 
 **Challenge #3: Sick Teacher [20 Points]**
 
@@ -99,7 +99,7 @@ After Googling “decrypting text”, I found this tool: http://www.richkni.co.u
 
 >>HISTORY OF HACKTHEBOX HACKTHEBOX WENT LIVE SOME TIME IN MAY OF 2017. SINCE THEN, IT HAS GROWN VERY QUICKLY TO THOUSANDS OF MEMBERS FROM ALL OVER THE GLOBE. THE HALL OF FAME LISTS THE TOP 100 USERS IN ORDER OF POINTS. AT THE TIME OF WRITING, THE TOP 3 USERS ARE STEFANO118, FILLIPOS AND AHMED. THERE ARE SOME FORUMS, A SHOUTBOX AND A SLACK CHANNEL. SLACK AND SHOUTBOX ARE AWESOME, BUT THE FORUMS NEED SOME LOVE! I WISH MORE PEOPLE USED THEM. HOPEFULLY THIS IS ENOUGH TEXT TO HELP WITH YOUR SUBSTITUTION! GET CRACKIN! PS DON'T FORGET TO SUPPORT HACKTHEBOX IF YOU CAN SPARE SOME MONEY. EVERY PENNY HELPS! XOXO - ARREXEL FLAG LOREMIPSUMDOLORSITAMET
 
-So, we now know the flag is LOREMIPSUMDOLORSITAMET, but the developer wants the flag lowercased. I entered *HTB{loremipsumdolorsitamet}* and it passed.
+So, we now know the flag is LOREMIPSUMDOLORSITAMET, but the developer wants the flag lowercased. I entered ```HTB{loremipsumdolorsitamet}``` and it passed.
 
 
 # Week 9-10
